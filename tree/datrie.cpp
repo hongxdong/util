@@ -1,13 +1,3 @@
-//============================================================================
-// Name        : datrie.cpp
-// Author      : hongxdong
-// Version     :
-// Copyright   : 
-// Description : Hello World in C, Ansi-style
-//============================================================================
-
-
-
 #include <stdio.h>
 #include <stdio.h>
 #include <string.h>
