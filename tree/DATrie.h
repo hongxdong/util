@@ -61,12 +61,12 @@ class DATrie {
   void Search(const char* word, std::vector<std::string>& result);
 
   /// @brief 正向最小匹配word在datrie里出现的所有的词，会跳过已匹配的词。
-  ///        Store("foo"); Store("bar"); Store("foobar"); Search("foobar", result);
+  ///        Store("foo"); Store("bar"); Store("foobar"); SearchForwardShortest("foobar", result);
   ///        result = <"foo", "bar">
   void SearchForwardShortest(const char* word, std::vector<std::string>& result);
 
   /// @brief 正向最大匹配word在datrie里出现的所有的词，会跳过已匹配的词。
-  ///        Store("foo"); Store("bar"); Store("foobar"); Search("foobar foobar", result);
+  ///        Store("foo"); Store("bar"); Store("foobar"); SearchForwardLongest("foobar foobar", result);
   ///        result = <"foobar", "foobar">
   void SearchForwardLongest(const char* word, std::vector<std::string>& result);
 
