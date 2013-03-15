@@ -4,7 +4,7 @@
 #include <string>
 #include <vector>
 
-#include "./DATrie.h"
+#include "DATrie.h"
 
 DATrie::DATrie()
   :trie_(NULL), alpha_map_(NULL) {
