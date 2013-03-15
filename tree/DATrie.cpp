@@ -11,31 +11,23 @@ DATrie::DATrie()
 }
 
 DATrie::~DATrie() {
-  Reset();
+  Clear();
 }
 
 bool DATrie::Init() {
-  Reset();
-  alpha_map_ = alpha_map_new();
-  if (!alpha_map_) {
-    return false;
-  }
-  /* Set four char range to map */
-  alpha_map_add_range(alpha_map_, 0x00000000, 0xFFFFFFFF);
-  trie_ = trie_new(alpha_map_);
-  return (trie_ != NULL);
+  return Reset();
 }
 
 /// @brief 从 trie_save() 保存的文件初始化datrie。
 bool DATrie::InitFromDictFile(const char* dict_path) {
-  Reset();
+  Clear();
   trie_ = trie_new_from_file(dict_path);
   return (trie_ != NULL);
 }
 
 /// @brief 从文本文件载入词典（词按行分隔）初始化datrie。(strlen(word) <= 256) && ( 自动trim(word) )
 bool DATrie::InitFromTxtFile(const char* txt_path) {
-  if (!Init()) {
+  if (!Reset()) {
     return false;
   }
   FILE *fp;
@@ -67,7 +59,20 @@ bool DATrie::SaveDictToFile(const char* file_path) {
 }
 
 /// @brief 清除datrie。
-void DATrie::Reset() {
+bool DATrie::Reset() {
+  Clear();
+  alpha_map_ = alpha_map_new();
+  if (!alpha_map_) {
+    return false;
+  }
+  /* Set four char range to map */
+  alpha_map_add_range(alpha_map_, 0x00000000, 0xFFFFFFFF);
+  trie_ = trie_new(alpha_map_);
+  return (trie_ != NULL);
+}
+
+/// @brief 清除datrie。
+void DATrie::Clear() {
   if (trie_ != NULL) {
     trie_free(trie_);
     trie_ = NULL;
@@ -210,7 +215,7 @@ void DATrie::Search(const char* word, std::vector<std::string>& result) {
 }
 
 /// @brief 正向最小匹配word在datrie里出现的所有的词，会跳过已匹配的词。
-///        Store("foo"); Store("bar"); Store("foobar"); Search("foobar", result);
+///        Store("foo"); Store("bar"); Store("foobar"); SearchForwardShortest("foobar", result);
 ///        result = <"foo", "bar">
 void DATrie::SearchForwardShortest(const char* word, std::vector<std::string>& result) {
   result.clear();
@@ -238,7 +243,7 @@ void DATrie::SearchForwardShortest(const char* word, std::vector<std::string>& r
 }
 
 /// @brief 正向最大匹配word在datrie里出现的所有的词，会跳过已匹配的词。
-///        Store("foo"); Store("bar"); Store("foobar"); Search("foobar foobar", result);
+///        Store("foo"); Store("bar"); Store("foobar"); SearchForwardLongest("foobar foobar", result);
 ///        result = <"foobar", "foobar">
 void DATrie::SearchForwardLongest(const char* word, std::vector<std::string>& result) {
   result.clear();
@@ -272,20 +277,20 @@ char* DATrie::trim(char* str) {
   #define is_space(ch) ((ch) == ' ' || (ch) == '\r' || (ch) == '\t' || (ch) == '\n')
   char *ptr = str, *end;
   while (*ptr) {
-      if (is_space(*ptr)) {
-          ptr++;
-      } else {
-          break;
-      }
+    if (is_space(*ptr)) {
+      ptr++;
+    } else {
+      break;
+    }
   }
   end = str + strlen(str) - 1;
   while (end >= ptr) {
-      if (is_space(*end)) {
-          *end = '\0';
-          end--;
-      } else {
-          break;
-      }
+    if (is_space(*end)) {
+      *end = '\0';
+      end--;
+    } else {
+      break;
+    }
   }
   return ptr;
 }
@@ -293,7 +298,7 @@ char* DATrie::trim(char* str) {
 void DATrie::conv_to_alpha(const char* in, int in_len, AlphaChar* out, int* out_len) {
   int i;
   for (i = 0; i < in_len; i++) {
-      out[i] = (AlphaChar) in[i];
+    out[i] = (AlphaChar) in[i];
   }
   out[in_len] = (AlphaChar) 0;
   if (out_len) {

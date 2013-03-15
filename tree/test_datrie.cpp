@@ -23,7 +23,7 @@ int main(void) {
   for (size_t i = 0; i < prefixes.size(); ++i) {
     printf("prefix         : %s\n", prefixes[i].c_str());
   }
-  trie.Prefixes("barfoo", prefixes);
+  trie.Prefixes("barfoofoobar", prefixes);
   for (size_t i = 0; i < prefixes.size(); ++i) {
     printf("prefix         : %s\n", prefixes[i].c_str());
   }
@@ -77,7 +77,7 @@ int main(void) {
     printf("search_forward_shortest    : %s\n", search_result[i].c_str());
   }
   printf("\n");
-  trie4.SearchForwardLongest("foobar赶集网，啥都有哦", search_result);
+  trie4.SearchForwardLongest("foobar, 赶集网，啥都有哦", search_result);
   for (size_t i = 0; i < search_result.size(); ++i) {
     printf("search_forward_longest    : %s\n", search_result[i].c_str());
   }

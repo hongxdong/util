@@ -28,8 +28,11 @@ class DATrie {
   /// @brief 保存datrie的数据到文件。方便下次直接调用InitFromDictFile载入词典。
   bool SaveDictToFile(const char* file_path);
 
+  /// @brief 重置datrie。
+  bool Reset();
+
   /// @brief 清除datrie。
-  void Reset();
+  void Clear();
 
   /// @brief 往 datrie 添加一个词。(strlen(word) <= 256)
   bool Store(const char* word);
