@@ -10,7 +10,7 @@
 #include <stdint.h>
 
 #define INIT_TIMER \
-  ElapsedTimer __timer;\
+  util::ElapsedTimer __timer;\
   __timer.Start();
 
 #define PRINT_TIMER \
@@ -67,7 +67,7 @@ Example:
 #include "./elapsed_timer.h"
 
 int main() {
-  ElapsedTimer * timer = new ElapsedTimer();
+  util::ElapsedTimer * timer = new ElapsedTimer();
   timer->Start();
   for (int i = 0; i < 10000000; i++) {
     // do something.
