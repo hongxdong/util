@@ -11,6 +11,8 @@
 #include <time.h>
 #include <sys/time.h>
 
+namespace util {
+
 ElapsedTimer::ElapsedTimer()
   :sec_(0)
   ,frac_(0)
@@ -55,5 +57,7 @@ double ElapsedTimer::ElapsedAndRestartMicroSeconds(int64_t sec, int64_t frac,
   sec  = *nowsec  - sec;
   frac = *nowfrac - frac;
   return ((double)sec) * 1000000.0 + ((double)frac);
+}
+
 }
 

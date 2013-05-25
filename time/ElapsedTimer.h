@@ -16,6 +16,8 @@
 #define PRINT_TIMER \
   printf("%s time: %d us\n", __func__, (int)__timer.ElapsedMicroSeconds());
 
+namespace util {
+
 class ElapsedTimer {
  public:
   ElapsedTimer();
@@ -53,6 +55,8 @@ class ElapsedTimer {
   int64_t sec_;
   int64_t frac_;
 };
+
+}
 
 /*
 
