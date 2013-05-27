@@ -1,4 +1,7 @@
 
+#ifndef _UTIL_PROCESS_H_
+#define _UTIL_PROCESS_H_
+
 #include <stdio.h>
 #include <unistd.h>
 #include <stdlib.h>
@@ -24,3 +27,6 @@ class Process {
 };
 
 }
+
+#endif  /* _UTIL_PROCESS_H_ */
+
