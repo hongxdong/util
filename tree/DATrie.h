@@ -7,6 +7,8 @@ extern "C" {
   #include <datrie/trie.h>
 }
 
+namespace util {
+
 /// @class DATrie 是使用 libdatrie 封装的双队列trie树，
 /// @brief 关于 datrie 请参考：http://linux.thai.net/~thep/datrie/datrie.html
 ///        Ubuntu 环境下可以使用 sudo apt-get install libdatrie-dev 安装依赖文件。
@@ -82,4 +84,6 @@ class DATrie {
   Trie* trie_;
   AlphaMap* alpha_map_;
 };
+
+}
 

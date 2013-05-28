@@ -6,6 +6,8 @@
 
 #include "DATrie.h"
 
+namespace util {
+
 DATrie::DATrie()
   :trie_(NULL), alpha_map_(NULL) {
 }
@@ -304,5 +306,7 @@ void DATrie::conv_to_alpha(const char* in, int in_len, AlphaChar* out, int* out_
   if (out_len) {
     *out_len = in_len;
   }
+}
+
 }
 

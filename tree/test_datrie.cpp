@@ -4,6 +4,8 @@
 
 #include "DATrie.h"
 
+using namespace util;
+
 int main(void) {
   DATrie trie;
   trie.Init();

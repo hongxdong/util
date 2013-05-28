@@ -6,7 +6,7 @@
 
 #else
 
-#define likely(x)       if(__builtin_expect(!!(x), 1))
+#define likely(x)       if(__builtin_expect((x), 1))
 #define unlikely(x)     if(__builtin_expect((x), 0))
 
 #endif
